@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserOutput from './UserOutput/UserOutput';
+import UserInput from './UserInput/UserInput';
 
 class App extends Component {
+  state = {
+    usernames: [
+      { username: 'hoaiducnew' },
+      { username: 'hoaius7' },
+      { username: 'hoaius8' }
+    ]
+  };
+
+  changeUsernameHandler = (event) => {
+    this.setState({
+      usernames: [
+        { username: event.target.value },
+        { username: 'hoaius7' },
+        { username: 'hoaius8' }
+      ]
+    })
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <UserInput changed={this.changeUsernameHandler} username={this.state.usernames[0].username}/>
+        <UserOutput username={this.state.usernames[0].username} />
+        <UserOutput username={this.state.usernames[1].username} />
+        <UserOutput username={this.state.usernames[2].username} />
       </div>
     );
   }
