@@ -21,6 +21,24 @@ class App extends Component {
         this.setState({persons: persons});
     }
 
+    nameChangedHandler = (event, id) => {
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id === id;
+        });
+
+        const persons = [...this.state.persons];
+        const person = persons[personIndex];
+
+        // const person = {...this.state.persons[personIndex]};
+        // const person = Object.assign({}, this.state.persons[personIndex]);
+
+        person.name = event.target.value;
+
+        this.setState({
+            persons: persons
+        });
+    }
+
     togglePersonsHandler = () => {
         const doesShow = this.state.showPersons;
         this.setState({ showPersons: !doesShow });
@@ -45,6 +63,7 @@ class App extends Component {
                             return <Person
                                 key={person.id}
                                 click={() => this.deletePersonHandler(index)}
+                                changed={(event) => this.nameChangedHandler(event, person.id)}
                                 name={person.name}
                                 age={person.age} />
                         })
