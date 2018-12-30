@@ -9,7 +9,7 @@ const char = (props) => {
         border: '1px solid black'
     }
     return (
-        <div style={style} onClick={props.click}>{props.charValue}</div>
+        <div style={style} onClick={props.click}>{props.character}</div>
     );
 }
 
