@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
     constructor(props) {
         super(props);
         console.log('[Persons.js] Inside Constructor', props);
@@ -15,22 +15,30 @@ class Persons extends Component {
         console.log('[Persons.js] Inside componentDidMount()');
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     console.log('[UPDATE Persons.js] Inside componentWillReceiveProps', nextProps);
-    // }
-    //
+    componentWillUnmount() {
+        // Component is about to get removed => Perform any cleanup work here!
+        console.log('[Persons.js] Inside componentWillUnmount()');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('[UPDATE Persons.js] Inside componentWillReceiveProps', nextProps);
+    }
+
     // shouldComponentUpdate(nextProps, nextState) {
     //     console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
-    //     return nextProps.persons !== this.props.persons;
+    //     return nextProps.persons !== this.props.persons
+    //         || nextProps.changed !== this.props.changed
+    //         || nextProps.clicked !== this.props.clicked;
+    //     // return true;
     // }
-    //
-    // componentWillUpdate(nextProps, nextState) {
-    //     console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps, nextState);
-    // }
-    //
-    // componentDidUpdate() {
-    //     console.log('[UPDATE Persons.js] Inside componentDidUpdate');
-    // }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log('[UPDATE Persons.js] Inside componentDidUpdate');
+    }
 
     render() {
         console.log('[Persons.js] Inside render()');
