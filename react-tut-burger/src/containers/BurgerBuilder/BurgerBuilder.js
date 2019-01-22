@@ -25,7 +25,8 @@ class BurgerBuilder extends Component {
         error: false
     }
 
-    componentWillMount () {
+    componentDidMount () {
+        console.log(this.props);
         axios.get('https://react-tut-burger.firebaseio.com/ingredients.json')
             .then(res => {
                 this.setState({ingredients: res.data});
@@ -57,29 +58,30 @@ class BurgerBuilder extends Component {
 
     purchaseContinueHandler = () => {
         // alert('Continue!');
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Hoai Nguyen',
-                address: {
-                    street: '1602 E Frankford Rd',
-                    zipCode: '75007',
-                    country: 'US'
-                },
-                email: 'hoaiducnew@gmail.com'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState({loading: false, purchasing: false});
-            })
-            .catch(error => {
-                this.setState({loading: false, purchasing: false});
-                console.error(error);
-            });
+        // this.setState({loading: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Hoai Nguyen',
+        //         address: {
+        //             street: '1602 E Frankford Rd',
+        //             zipCode: '75007',
+        //             country: 'US'
+        //         },
+        //         email: 'hoaiducnew@gmail.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({loading: false, purchasing: false});
+        //     })
+        //     .catch(error => {
+        //         this.setState({loading: false, purchasing: false});
+        //         console.error(error);
+        //     });
+        this.props.history.push('/checkout');
     }
 
     addIngredientHandler = (type) => {
