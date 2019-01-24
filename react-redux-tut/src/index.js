@@ -11,8 +11,8 @@ import counterReducer from './store/reducers/counter';
 import resultReducer from './store/reducers/result';
 
 const rootReducer = combineReducers({
-    cr: counterReducer,
-    rr: resultReducer
+    counterReducer: counterReducer,
+    resultReducer: resultReducer
 })
 const store = createStore(rootReducer);
 
